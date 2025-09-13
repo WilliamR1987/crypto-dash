@@ -6,7 +6,6 @@ import Header from './components/Header'
 import NotFound from './pages/not-found'
 import CoinDetailsPage from './pages/coin-details'
 
-
 const API_URL = import.meta.env.VITE_API_URL
 
 const App = () => {
@@ -24,8 +23,10 @@ const App = () => {
         const res = await fetch(
           `${API_URL}&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`
         )
+        console.log(res)        
         if (!res.ok) throw new Error('Failed to fetch data')
         const data = await res.json()
+
         setCoins(data)
       } catch (err) {
           setError(err.message)
