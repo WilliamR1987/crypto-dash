@@ -3,6 +3,7 @@ import LimitSelector from '../components/LimitSelector';
 import FilterInput from '../components/FilterInput';
 import SortSelector from '../components/SortSelector';
 
+// This page will host the functionality to display coins filtered by name and or symbol and sorted by options shown in the select list
 const HomePage = ({coins, filter, setFilter, limit, setLimit, sortBy, setSortBy, loading, error  }) => {
 
     const filteredCoins = coins //coins is an array of many coins
@@ -33,7 +34,7 @@ const HomePage = ({coins, filter, setFilter, limit, setLimit, sortBy, setSortBy,
 
 return (  
     <div>
-        <h1>🚀 Crypto Dash</h1>
+        <h1> 🚀 Crypto Dash</h1>
         {loading && <p>Loading...</p>} {/* loading = true by default; if there was an error or no error, setLoading would have been set to false in the useEffect by the finally block */}
         {error && <div className='error'>{error}</div>} {/* if error is falsy left hand side is not executed, else if error is truthy, the right hand side display the error message */}
         <div className='top-controls'> {/* set the number of coins, filter and sort as desired  */}
@@ -52,7 +53,7 @@ return (
         </main>
         )}
     </div>
-);
+    );
 }
  
 export default HomePage;

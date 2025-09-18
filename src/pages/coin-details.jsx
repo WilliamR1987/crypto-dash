@@ -1,5 +1,7 @@
 import { useParams, Link } from 'react-router'
 import {useEffect, useState} from 'react'
+import CoinChart from '../components/CoinChart'
+
 const API_URL = import.meta.env.VITE_COIN_API_URL
 
 const CoinDetailsPage = () => {
@@ -55,7 +57,6 @@ const CoinDetailsPage = () => {
             <h4>
               Market Cap: ${coin.market_data.market_cap.usd.toLocaleString()}
             </h4>
-          </div>
             <h4>
               24h Price Change: ${coin.market_data.price_change_24h.toFixed(2)}{' '}
               ({coin.market_data.price_change_percentage_24h.toFixed(2)}%)
@@ -79,7 +80,10 @@ const CoinDetailsPage = () => {
             <h4>
               Last Updated: {new Date(coin.last_updated).toLocaleDateString()}
             </h4>
-            
+          </div>
+
+          <CoinChart coinId={coin.id} />
+
             <div className='coin-details-links'>
 
             {coin.links.homepage[0] && (
@@ -123,3 +127,26 @@ const CoinDetailsPage = () => {
 {/* end of return */}
 
 export default CoinDetailsPage;
+
+/*
+  ./ refers to the current directory. It tells the program to start looking for the file in the same folder where the current script or command is located.
+../ refers to the parent directory, which is the folder immediately above the current one. Using ../ allows you to move up one level in the directory hierarchy. 
+Example
+Imagine the following directory structure:
+project/
+├── index.html
+└── js/
+    └── script.js
+
+If you are writing code in script.js and want to reference index.html, which is in the parent directory, you would use ../.
+javascript
+   Inside js/script.js
+   To access index.html, move up one level (..)
+fetch('../index.html')
+
+Conversely, if you were working in a file inside the project folder and needed to access script.js, you would use ./ or simply start with the folder name. The ./ explicitly states "start from the current location." 
+javascript
+   Inside index.html
+   To access js/script.js, go into the 'js' folder from the current location
+<script src="./js/script.js"></script>
+*/
